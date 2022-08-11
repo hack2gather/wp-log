@@ -30,6 +30,8 @@ for SITE in $(cat $LISTS);
 do
     if [[ $(curl --connect-timeout 3 --max-time 3 -kLs "${SITE}/wp-content/debug.log" ) =~ 'PHP Notice: ' ]]; then
                 echo -e "\e[32m[+] FOUND: ${SITE}/wp-content/debug.log"
+                sleep 1
+                xdg-open "${SITE}/sys404/root"
         else
                 echo -e "\e[31m[-] NOT FOUND: ${SITE}"
         fi
